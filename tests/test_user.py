@@ -68,19 +68,19 @@ def test_create_user_with_invalid_email():
 
 def test_delete_user():
     '''Удаление пользователя'''
-    test_user = {
-        "email": "todelete@example.com",
-        "password": "todelete123",
-        "name": "To Be Deleted"
-    }
-    create_response = client.post("/api/v1/user", json=test_user)
-    assert create_response.status_code == 201
+    # test_user = {
+    #     "email": "todelete@example.com",
+    #     "password": "todelete123",
+    #     "name": "To Be Deleted"
+    # }
+    # create_response = client.post("/api/v1/user", json=test_user)
+    # assert create_response.status_code == 201
 
-    user_email = create_response.json()["email"]
+    # user_email = create_response.json()["email"]
 
-    delete_response = client.delete(f"/api/v1/user", params={"email": user_email})
+    delete_response = client.delete(f"/api/v1/user", params={"email": users[0]['email']})
 
     assert delete_response.status_code == 204
 
-    get_response = client.get("/api/v1/user", params={'email': test_user['email']})
+    get_response = client.get("/api/v1/user", params={'email': users[0]['email']})
     assert get_response.status_code == 404
