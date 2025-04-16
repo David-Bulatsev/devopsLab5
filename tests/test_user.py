@@ -39,7 +39,7 @@ def test_create_user_with_valid_email():
         "password": "23131231",
         "name": "New User"
     }
-    response = client.post("/api/v1/user", params=new_user)
+    response = client.post("/api/v1/user", json=new_user)
     assert response.status_code == 201
 
     response_data = response.json()
